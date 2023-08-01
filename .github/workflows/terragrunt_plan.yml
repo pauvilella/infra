@@ -1,7 +1,9 @@
 name: Terragrunt Plan
 
 on:
-  - pull_request
+  pull_request:
+    branches:
+      - main
 
 env:
   tf_version: '1.0.5'
@@ -25,7 +27,7 @@ jobs:
           mask-aws-account-id: 'no'
 
       - name: 🖌️ Terragrunt Format
-        uses: the-commons-project/terragrunt-github-actions@1.0.6
+        uses: pauvilella/gha-terragrunt@v1
         with:
           tf_actions_version: ${{ env.tf_version }}
           tg_actions_version: ${{ env.tg_version }}
@@ -37,35 +39,35 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🏁 Terragrunt Init
-        uses: the-commons-project/terragrunt-github-actions@1.0.6
+        uses: pauvilella/gha-terragrunt@v1
         with:
           tf_actions_version: ${{ env.tf_version }}
           tg_actions_version: ${{ env.tg_version }}
-          tf_actions_subcommand: run-all init
+          tf_actions_subcommand: run-all-init
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ✅ Terragrunt Validate
-        uses: the-commons-project/terragrunt-github-actions@1.0.6
-        with:
-          tf_actions_version: ${{ env.tf_version }}
-          tg_actions_version: ${{ env.tg_version }}
-          tf_actions_binary: terraform
-          tf_actions_subcommand: validate
-          tf_actions_working_dir: ${{ env.tf_working_dir }}
-          tf_actions_comment: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: ✅ Terragrunt Validate
+      #   uses: the-commons-project/terragrunt-github-actions@1.0.6
+      #   with:
+      #     tf_actions_version: ${{ env.tf_version }}
+      #     tg_actions_version: ${{ env.tg_version }}
+      #     tf_actions_binary: terraform
+      #     tf_actions_subcommand: validate
+      #     tf_actions_working_dir: ${{ env.tf_working_dir }}
+      #     tf_actions_comment: true
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📝 Terragrunt Plan
-        uses: the-commons-project/terragrunt-github-actions@1.0.6
-        with:
-          tf_actions_version: ${{ env.tf_version }}
-          tg_actions_version: ${{ env.tg_version }}
-          tf_actions_subcommand: run-all plan
-          tf_actions_working_dir: ${{ env.tf_working_dir }}
-          tf_actions_comment: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: 📝 Terragrunt Plan
+      #   uses: the-commons-project/terragrunt-github-actions@1.0.6
+      #   with:
+      #     tf_actions_version: ${{ env.tf_version }}
+      #     tg_actions_version: ${{ env.tg_version }}
+      #     tf_actions_subcommand: run-all plan
+      #     tf_actions_working_dir: ${{ env.tf_working_dir }}
+      #     tf_actions_comment: true
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
