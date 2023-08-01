@@ -5,7 +5,7 @@ on:
 
 env:
   tf_version: '1.0.5'
-  tg_version: 'latest'
+  tg_version: 'v0.48.1'
   tf_working_dir: '.'
 
 jobs:
