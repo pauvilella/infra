@@ -57,7 +57,7 @@ jobs:
             **Terragrunt Run All Init:**
 
             ```
-            ${{ steps.run-all-init.outputs.run-all-init-comment }}
+            ${{ steps.run-all-init.outputs.run_all_init_comment }}
             ```
 
       - name: ✅ Terragrunt Validate
