@@ -5,7 +5,7 @@
   "editor.suggest.preview": true,
 
   "files.associations": {
-    "*.tpl.json": "terraform",
+    "*.tpl.json": "terraform"
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -20,5 +20,5 @@
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file"
-  },
+  }
 }

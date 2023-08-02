@@ -39,6 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🏁 Terragrunt Init
+        id: run-all-init
         uses: pauvilella/gha-terragrunt@v1
         with:
           tf_actions_version: ${{ env.tf_version }}
@@ -46,8 +47,14 @@ jobs:
           tf_actions_subcommand: run-all-init
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: "true"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✍🏼 Comment Init in PR
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.run-all-init.outputs.run-all-init-comment }}
 
       - name: ✅ Terragrunt Validate
         uses: pauvilella/gha-terragrunt@v1
