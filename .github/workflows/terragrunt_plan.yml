@@ -54,7 +54,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
+            **Terragrunt Run All Init:**
+
+            ```
             ${{ steps.run-all-init.outputs.run-all-init-comment }}
+            ```
 
       - name: ✅ Terragrunt Validate
         uses: pauvilella/gha-terragrunt@v1
