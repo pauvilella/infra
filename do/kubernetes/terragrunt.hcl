@@ -20,5 +20,5 @@ inputs = {
   worker_size = "s-2vcpu-4gb"
   number_of_workers = 1
   destroy_all_associated_resources = true
-  registry_integration = true
+  registry_integration = false
 }
